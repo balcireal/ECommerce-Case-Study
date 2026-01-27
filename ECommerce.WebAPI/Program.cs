@@ -1,5 +1,9 @@
 using ECommerce.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
+using ECommerce.DataAccess.Abstract;
+using ECommerce.DataAccess.Concrete;
+using ECommerce.Business.Abstract;
+using ECommerce.Business.Concrete;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +20,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ECommerceDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+builder.Services.AddScoped<IProductService, ProductManager>();
 
 
 var app = builder.Build();
