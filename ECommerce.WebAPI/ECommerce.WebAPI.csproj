@@ -20,4 +20,8 @@
     <ProjectReference Include="..\ECommerce.Model\ECommerce.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
